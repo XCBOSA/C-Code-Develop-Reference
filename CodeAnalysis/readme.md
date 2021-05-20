@@ -22,7 +22,8 @@ Helloworld代码分析任务调度器（通过分析用户输入的字符来获�
 
 ## 简单的最外侧分析规则：
 C中任何在最外侧的定义只有一种格式：  
-Assign `<Type> <ValueName> [,ValueName2, ValueName3...] [=InitalValue];`  
+Assign `<Type> [ValueName] [,ValueName2, ValueName3...] [=InitalValue];`  
+注：C语言允许 Type; 这种没意义的表达式，所以ValueName可以缺省  
 其中的Type可以是已经存在的Type，或者是struct Structure引导的临时Type，或者是当前用typedef定义的type。  
 返回Type的语句有：  
 TypeDef `typedef <ExistType> <TypeAlias>`  
