@@ -39,5 +39,6 @@ typedef struct {
 ```
 先按照Assign处理，碰到typedef递归的交给TypeDef处理，TypeDef碰到struct递归的交给Struct处理，退出两层递归后返回Assign，此时Assign处理<ValueName>，下标在myTypeInstance处...  
 ```
-Assign <TypeDef <struct { xxx }> <MyType>> <myTypeInstance> [=None];
+Assign <TypeDef <StructImpelemtion> <TypeAlias>> [ValueName]      [=InitalValue];
+Assign <TypeDef <struct { xxx }>    <MyType>>    [myTypeInstance] [=None];
 ```
