@@ -22,21 +22,21 @@ Helloworld代码分析任务调度器（通过分析用户输入的字符来获�
 
 ## 简单的最外侧分析规则：
 C中任何在最外侧的定义只有一种格式：  
-Assign `<Type> <ValueName> [,ValueName2, ValueName3...] [=InitalValue];`
+Assign `<Type> <ValueName> [,ValueName2, ValueName3...] [=InitalValue];`  
 其中的Type可以是已经存在的Type，或者是struct Structure引导的临时Type，或者是当前用typedef定义的type。  
 返回Type的语句有：  
-TypeDef `typedef <ExistType> <TypeAlias>`
-Struct `struct <StructMetadata>`
-  返回StructMetadata的语句有：
-  -- StructImplemention `[StructName] { Some Code }`
-  -- ExistStruct `<ExistStructName>`
-比如处理：
+TypeDef `typedef <ExistType> <TypeAlias>`  
+Struct `struct <StructMetadata>`  
+  返回StructMetadata的语句有：  
+  -- StructImplemention `[StructName] { Some Code }`  
+  -- ExistStruct `<ExistStructName>`  
+比如处理：  
 ```
 typedef struct {
    xxx
 } MyType myTypeInstance;
 ```
-先按照Assign处理，碰到typedef递归的交给TypeDef处理，TypeDef碰到struct递归的交给Struct处理，退出两层递归后返回Assign，此时Assign处理<ValueName>，下标在myTypeInstance处...
+先按照Assign处理，碰到typedef递归的交给TypeDef处理，TypeDef碰到struct递归的交给Struct处理，退出两层递归后返回Assign，此时Assign处理<ValueName>，下标在myTypeInstance处...  
 ```
 Assign <TypeDef <struct { xxx }> <MyType>> <myTypeInstance> [=None];
 ```
